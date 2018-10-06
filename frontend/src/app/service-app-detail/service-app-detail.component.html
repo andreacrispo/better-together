@@ -1,0 +1,27 @@
+
+
+<div *ngIf="serviceApp">
+  <h1> {{serviceApp.name }} </h1>
+
+  <h3> {{ serviceApp.monthlyPrice}}</h3>
+
+  <h3> Partecipants: </h3>
+
+  {{ serviceApp.serviceId }}
+
+test
+  {{ serviceApp.partecipants }}
+  {{ serviceApp.partecipants }}
+
+  {{ serviceApp | json }}
+  {{ serviceApp?.partecipants | json }}
+
+  <div *ngIf="serviceApp?.partecipants">
+    {{ serviceApp?.partecipant | json }}
+    <ul>  
+      <li *ngFor="let partecipant of serviceApp.partecipants"> {{ partecipant.name }}  - {{ partecipant.pricePaid}} </li>
+    </ul>
+  </div>
+</div>
+
+

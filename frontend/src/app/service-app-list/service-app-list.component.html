@@ -1,0 +1,12 @@
+
+{{  serviceAppList | json }}
+
+<ul> 
+
+  <li *ngFor="let serviceApp of serviceAppList"> <a [routerLink]="['/services', serviceApp.serviceId]" > {{ serviceApp.name }}  </a> </li>
+</ul>
+
+
+<div *ngFor="let serviceApp of serviceAppList">
+  {{ serviceApp | json }}
+</div>
