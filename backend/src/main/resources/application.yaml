@@ -1,0 +1,27 @@
+
+server:
+  port: 8080
+
+logging:
+  level:
+    my.app.bt.bettertogether: debug
+
+spring:
+  application:
+    name: better-together
+
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:test;
+    username: sa
+    password:
+
+  jpa:
+    database: H2
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
