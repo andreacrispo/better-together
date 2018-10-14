@@ -1,5 +1,6 @@
 package my.app.bt.bettertogether.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,7 +30,9 @@ public class ServiceApp {
 
     private Double monthlyPrice;
 
+    private Integer participantNumber;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "service", cascade = CascadeType.ALL )
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ServiceAppParticipant> serviceAppParticipants;
 }

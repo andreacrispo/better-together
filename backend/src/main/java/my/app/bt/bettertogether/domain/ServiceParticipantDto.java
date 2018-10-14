@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import my.app.bt.bettertogether.entity.Participant;
-import my.app.bt.bettertogether.entity.ServiceApp;
 
 import java.util.List;
 
@@ -25,6 +23,7 @@ public class ServiceParticipantDto {
 
     private Double monthlyPrice;
 
+    private Integer participantNumber;
 
     private List<ParticipantDto> participants;
 }

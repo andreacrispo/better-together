@@ -24,7 +24,7 @@ public class Participant {
 
     private String email;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "participant", cascade = CascadeType.ALL)
     @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "participant")
     private Set<ServiceAppParticipant> serviceAppParticipants;
 }
