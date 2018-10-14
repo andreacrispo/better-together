@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Participant } from './domain';
+import { Participant } from '../domain/domain';
 
 @Pipe({
   name: 'paidStatus',

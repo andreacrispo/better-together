@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceAppService } from '../serviceApp.service';
-import { ServiceParticipant, ActionType } from "../domain";
+import { ServiceAppService } from '../../shared/services/serviceApp.service';
+import { ServiceParticipant, ActionType } from "../../shared/domain/domain";
 
 import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ServiceModalComponent } from '../service-modal/service-modal.component';
+import { ServiceAppModalComponent } from '../service-app-modal/service-app-modal.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -42,7 +42,7 @@ export class ServiceAppListComponent implements OnInit {
         serviceApp: new ServiceParticipant(),
         actionType: ActionType.CREATE
     };
-    this.bsModalRef =  this.modalService.show(ServiceModalComponent, {initialState})
+    this.bsModalRef =  this.modalService.show(ServiceAppModalComponent, {initialState})
     this.modalService.onHide.subscribe((reason: string) => this.getServicesList());
   }
 
@@ -52,7 +52,7 @@ export class ServiceAppListComponent implements OnInit {
         serviceApp: serviceApp,
         actionType: ActionType.UPDATE
     };
-    this.modalService.show(ServiceModalComponent, {initialState});
+    this.modalService.show(ServiceAppModalComponent, {initialState});
     this.modalService.onHide.subscribe((reason: string) => this.getServicesList());
   }
 

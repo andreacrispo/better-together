@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Participant, ServiceParticipant, ActionType } from '../domain';
-import { ServiceAppService } from '../serviceApp.service';
+import { Participant, ServiceParticipant, ActionType } from '../../shared/domain/domain'
+import { ServiceAppService } from '../../shared/services/serviceApp.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { ServiceAppService } from '../serviceApp.service';
-import { ServiceParticipant, ActionType } from '../domain';
+import { ServiceParticipant, ActionType } from '../../shared/domain/domain'
+import { ServiceAppService } from '../../shared/services/serviceApp.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './service-modal.component.html',
   styleUrls: ['./service-modal.component.css']
 })
-export class ServiceModalComponent implements OnInit {
+export class ServiceAppModalComponent implements OnInit {
   
   serviceApp: ServiceParticipant;
   actionType: ActionType;

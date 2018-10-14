@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ServiceParticipant, Participant } from './domain';
+import { ServiceParticipant, Participant } from '../domain/domain';
 
 @Injectable({ providedIn: 'root' })
 export class ServiceAppService {

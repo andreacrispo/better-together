@@ -1,10 +1,10 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ServiceAppService } from "../serviceApp.service";
-import { ServiceParticipant, Participant } from "../domain";
-import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { Participant, ServiceParticipant } from '../../shared/domain/domain'
+import { ServiceAppService } from '../../shared/services/serviceApp.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { ParticipantModalComponent } from '../participant-modal/participant-modal.component';
+import { ParticipantModalComponent } from '../../particpant/participant-modal/participant-modal.component'
 import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 
