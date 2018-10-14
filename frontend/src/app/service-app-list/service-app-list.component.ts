@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ServiceParticipant } from "../domain";
+import { ServiceAppService } from '../serviceApp.service';
+import { ServiceParticipant, ActionType } from "../domain";
 
+import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ServiceModalComponent } from '../service-modal/service-modal.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-service-app-list',
@@ -10,9 +14,17 @@ import { ServiceParticipant } from "../domain";
 })
 export class ServiceAppListComponent implements OnInit {
 
+  editIcon   = faEdit;
+  addIcon    = faPlus;
+  deleteIcon = faTrashAlt;
+
   serviceAppList: Array<ServiceParticipant>; 
 
-  constructor(private http: HttpClient) { }
+  bsModalRef: BsModalRef;
+
+  constructor(private serviceAppService: ServiceAppService,
+              private toastr: ToastrService,
+              private modalService: BsModalService) {  }
 
   ngOnInit() {
       this.getServicesList();
@@ -20,8 +32,40 @@ export class ServiceAppListComponent implements OnInit {
   }
 
   getServicesList(){
-    this.http.get<Array<ServiceParticipant>>("http://localhost:8080/api/services/")
+    this.serviceAppService.getAll()
         .subscribe( list => this.serviceAppList = list);
   } 
+
+
+  addService() {   
+     const initialState = { 
+        serviceApp: new ServiceParticipant(),
+        actionType: ActionType.CREATE
+    };
+    this.bsModalRef =  this.modalService.show(ServiceModalComponent, {initialState})
+    this.modalService.onHide.subscribe((reason: string) => this.getServicesList());
+  }
+
+  editService(serviceApp) {
+    console.log("EDIT service:" + serviceApp)
+    const initialState = { 
+        serviceApp: serviceApp,
+        actionType: ActionType.UPDATE
+    };
+    this.modalService.show(ServiceModalComponent, {initialState});
+    this.modalService.onHide.subscribe((reason: string) => this.getServicesList());
+  }
+
+  deleteService(serviceId){
+    console.log("DELETE service:" + serviceId)
+    this.serviceAppService.delete(serviceId)
+      .subscribe(
+        resp => {
+          this.toastr.success("Service removed")
+          this.getServicesList() // Re-make a request or delete object from array localy? 
+        },
+        err  => this.toastr.error("Error during remove service", "Error")
+      );
+  }
 
 }

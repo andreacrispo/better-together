@@ -1,27 +1,79 @@
 
 
-<div *ngIf="serviceApp">
-  <h1> {{serviceApp.name }} </h1>
+<div *ngIf="serviceApp" class="text-center">
 
-  <h3> {{ serviceApp.monthlyPrice}}</h3>
+<h1 class="text-center display-1"> {{serviceApp.name }} </h1> 
 
-  <h3> Partecipants: </h3>
+<h2 class="text-center display-5"> {{ serviceApp.monthlyPrice  | currency:'EUR' }} <span style="font-size:14px">/monthly</span> </h2> 
 
-  {{ serviceApp.serviceId }}
+ 
 
-test
-  {{ serviceApp.partecipants }}
-  {{ serviceApp.partecipants }}
+<h2 class="text-center display-5">  
+    <app-month-selector [month]="month" [year]="year" (onChangeMonth)="changeYearMonthEvent($event)" ></app-month-selector>
+    <app-month-year-picker (yearMonthSelected)="changeYearMonthEvent($event)" ></app-month-year-picker>
+</h2>
+<br />
 
-  {{ serviceApp | json }}
-  {{ serviceApp?.partecipants | json }}
 
-  <div *ngIf="serviceApp?.partecipants">
-    {{ serviceApp?.partecipant | json }}
-    <ul>  
-      <li *ngFor="let partecipant of serviceApp.partecipants"> {{ partecipant.name }}  - {{ partecipant.pricePaid}} </li>
-    </ul>
+
+<div class="row">
+  <div  class="col-md-4">
+      <h1 class=""> Participants
+          <button (click)="addParticipant()" type="button" class="btn btn-secondary"> <fa-icon [icon]="addIcon"></fa-icon> </button>
+      </h1>
   </div>
+  <div  class="col-md-4">  </div>
+  <div  class="col-md-4">
+    <div class="btn-group" *ngIf="serviceApp?.participants.length > 0">
+      <label class="btn btn-dark"     role="button" (click)="paidFilter = undefined" >All </label>
+      <label class="btn btn-success"  role="button" (click)="paidFilter = true" >Payed</label>
+      <label class="btn btn-danger"   role="button" (click)="paidFilter = false" >Not payed</label>
+    </div>        
+  </div>
+</div>
+
+
+<div *ngIf="serviceApp?.participants.length > 0">
+  
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Has Paid?</th>
+          <th scope="col">Price Paid</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let participant of serviceApp.participants | paidStatus:paidFilter" >
+    
+          <td>{{participant.name}}</td>
+          <td> 
+               <label (click)="changePaidStatus(participant)"  [className]="participant.hasPaid ? 'btn badge badge-success' : 'btn badge badge-danger'" > {{ participant.hasPaid ? "Payed" : "NOT Payed" }}</label> 
+          </td>
+          <td> {{ participant.pricePaid |  currency:'EUR' }} </td>
+          <td>
+            <div class="btn-group"> 
+               <button (click)="editParticipant(participant)" type="button" class="btn btn-secondary"> <fa-icon [icon]="editIcon"></fa-icon> </button>
+               <button (click)="removeParticipant(participant)" type="button" class="btn btn-secondary"> <fa-icon [icon]="deleteIcon"></fa-icon> </button>
+            </div>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    Partecipanti tot = {{ participantsPaid  |  currency:'EUR'   }} <br />
+    Rimangono da pagare = {{ serviceApp.monthlyPrice - participantsPaid  |  currency:'EUR'  }}  
+</div>
+
+<div *ngIf="serviceApp?.participants.length == 0">
+  <br />
+  <h2>     There is no participant for this month   </h2>
+    <button (click)="copyParticipants()" type="button" class="btn btn-primary"> Copy participants from previuos month </button>
+    
+</div>
+  
 </div>
 
 

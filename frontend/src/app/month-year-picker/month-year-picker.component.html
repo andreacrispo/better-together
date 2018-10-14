@@ -1,0 +1,31 @@
+
+
+
+<div class="btn-group" dropdown>
+    <button id="button-basic" dropdownToggle type="button" class="btn dropdown-toggle" aria-controls="dropdown-basic">
+            <fa-icon [icon]="calendarIcon"></fa-icon>  <span class="caret"></span>
+    </button>
+    <div id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+
+        <div class="row"> 
+            <button class="btn btn-link col-4" (click)="changeYear($event,-1)">   <fa-icon [icon]="leftIcon"></fa-icon>  </button>
+
+            <button *ngIf="!isyearSelected" class="btn btn-link col-4" (click)="showYear($event,true)">{{year}}</button>
+            <button *ngIf="isyearSelected" class="btn btn-link col-4" (click)="showYear($event,false)">{{incr+1}}-{{incr+10}}</button>
+
+            <button class="btn btn-link col-4" (click)="changeYear($event,+1)">   <fa-icon [icon]="rightIcon"></fa-icon>  </button>
+        </div>
+
+        <div class="row">
+            <div *ngFor="let month of months; let i = index; let first = first; let last = last" class="col-4" (click)="selectYearMonth($event,i)">
+                <div class="month-block" >  
+                    <span class="btn" *ngIf="!isyearSelected">{{month}}</span>
+                    <span class="btn" *ngIf="isyearSelected">{{i+incr}}</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

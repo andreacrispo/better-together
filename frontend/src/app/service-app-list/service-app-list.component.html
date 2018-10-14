@@ -1,12 +1,41 @@
 
-{{  serviceAppList | json }}
 
-<ul> 
+<div class=" mx-auto text-center">
+    <h1 class="display-3">
+        Services
+        
+        <button (click)=addService() class="btn btn-outline-primary"> <fa-icon [icon]="addIcon"></fa-icon>  </button>
+    </h1>
+  </div>
 
-  <li *ngFor="let serviceApp of serviceAppList"> <a [routerLink]="['/services', serviceApp.serviceId]" > {{ serviceApp.name }}  </a> </li>
-</ul>
+<div class="row card-group">
+    
+    <div class="col-4"  *ngFor="let serviceApp of serviceAppList" > 
+        <div class="card" >
+             <img class="card-img-top" src="http://placehold.jp/99ccff/003366/200x200.png?text={{serviceApp.name}}"  height="250"  alt=""> 
+            <div class="card-body">
+              <h1 class="card-title text-center"> {{serviceApp.name}}</h1>
+              <h3 class="card-text"> {{ serviceApp.monthlyPrice | currency:'EUR' }} <span style="font-size:14px">/monthly</span> 
+            
+                    <div class="btn-group float-right d-inline" role="group" aria-label="">
+                        <button (click)="editService(serviceApp)" type="button" class="btn btn-secondary"> <fa-icon [icon]="editIcon"></fa-icon> </button>
+                        <button (click)="deleteService(serviceApp.serviceId)" type="button" class="btn btn-secondary"> <fa-icon [icon]="deleteIcon"></fa-icon> </button>
+                   </div>
+                </h3>
+     
+            </div>
+            <div class="card-footer">           
+                 <a [routerLink]="['/services', serviceApp.serviceId]" class="btn btn-primary btn-sm btn-block">Show</a>
+            </div>
+        </div>
 
-
-<div *ngFor="let serviceApp of serviceAppList">
-  {{ serviceApp | json }}
+        <br />
+    </div>
 </div>
+
+<div *ngIf="serviceAppList.length ==0 ">
+   <h1 class="text-center">  No services present </h1>
+</div>
+
+
+

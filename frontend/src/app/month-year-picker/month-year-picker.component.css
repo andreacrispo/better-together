@@ -1,0 +1,15 @@
+
+.dropdown-menu {
+    width: 15rem;
+    padding: 0 0.2rem 0.5rem 0.2rem;
+    margin-left:-13rem;
+    margin-right: +13em;
+}
+
+.month-block:hover {
+    background-color: lightblue;
+}
+
+.selected{
+    background-color: blue;
+}

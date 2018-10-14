@@ -1,0 +1,38 @@
+
+
+<form (ngSubmit)="onSubmit()" #serviceForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Service</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name"  required
+                  [(ngModel)]="model.name" name="name"   #name="ngModel">
+          <div [hidden]="name.valid || name.pristine"  class="alert alert-danger">Name is required    </div>
+        </div>
+        <div class="form-group">
+            <label for="monthlyPrice">Monthly Price</label>
+            <input type="number" class="form-control" id="monthlyPrice"  required
+                    [(ngModel)]="model.monthlyPrice" name="monthlyPrice"  #monthlyPrice="ngModel">
+            <div [hidden]="monthlyPrice.valid || monthlyPrice.pristine"  class="alert alert-danger">Price is required    </div>
+        </div>
+
+        <div class="form-group">
+                <label for="participantNumber">Number of pariticipant</label>
+                <input type="number" class="form-control" id="participantNumber"  required
+                        [(ngModel)]="model.participantNumber" name="participantNumber"  #participantNumber="ngModel">
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success" [disabled]="!serviceForm.form.valid">Save</button>
+    </div>
+
+</form>

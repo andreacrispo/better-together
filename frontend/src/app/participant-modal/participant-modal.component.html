@@ -1,0 +1,42 @@
+<form (ngSubmit)="onSubmit()" #participantForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Participant</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="form-group row">
+            <label for="mail" class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-check">
+                <label for="hasPaid" class="col-sm-5 col-form-label">Has paid</label>
+                <div class="btn-group col-sm-7" btnRadioGroup [(ngModel)]="participant.hasPaid" name="participantHasPaid">
+                    <label class="btn btn-danger" [btnRadio]=false tabindex="0" role="button"> NO </label>
+                    <label class="btn btn-success" [btnRadio]=true tabindex="0" role="button"> YES </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" *ngIf="participant.hasPaid == true">
+            <label for="pricePaid" class="col-sm-3 col-form-label">Price paid</label>
+            <div class="col-sm-9">
+                <input type="number" class="form-control" id="pricePaid" required [(ngModel)]="model.pricePaid" name="pricePaid" #pricePaid="ngModel">
+                <div [hidden]="pricePaid.valid || pricePaid.pristine" class="alert alert-danger">Price is required </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success" [disabled]="!participantForm.form.valid">Save</button>
+    </div>
+    
+</form>
