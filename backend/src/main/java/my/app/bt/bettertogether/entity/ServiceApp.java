@@ -32,6 +32,10 @@ public class ServiceApp {
 
     private Integer participantNumber;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ServiceAppParticipant> serviceAppParticipants;

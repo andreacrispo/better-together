@@ -31,4 +31,5 @@ public interface ServiceAppParticipantRepository extends JpaRepository<ServiceAp
             " order by sp.participant.name ")
     List<ServiceAppParticipant> findParticipantsByPaymentDate(@Param("serviceId") Long serviceId,
                                                               @Param("paymentDate") LocalDate paymentDate);
+
 }

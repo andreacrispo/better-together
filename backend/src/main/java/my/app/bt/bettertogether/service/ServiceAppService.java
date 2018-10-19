@@ -29,8 +29,11 @@ public class ServiceAppService {
     @Autowired
     private ServiceAppParticipantService serviceAppParticipantService;
 
-    public List<ServiceParticipantDto> findAll() {
-        return this.serviceAppRepository.findAll()
+    @Autowired
+    private UserService userService;
+
+    public List<ServiceParticipantDto> findAll(String username) {
+        return this.serviceAppRepository.findAllByUsername(username)
                 .stream()
                 .map(s ->
                         ServiceParticipantDto.builder()
@@ -44,9 +47,9 @@ public class ServiceAppService {
                 ).collect(Collectors.toList());
     }
 
-    public ServiceParticipantDto findById(Long id, LocalDate paymentDate) {
+    public ServiceParticipantDto findById(Long id, LocalDate paymentDate, String username) {
         log.info("Find Service with id: {}", id);
-        ServiceApp s = this.serviceAppRepository.findById(id)
+        ServiceApp s = this.serviceAppRepository.findByIdAndUsername(id, username)
                 .orElseThrow(() -> new ResourceNotFoundException("Service", "id", id));
 
         List<ParticipantDto> participantList = this.serviceAppParticipantService.findParticipantsByPaymentDate(id, paymentDate)
@@ -75,21 +78,24 @@ public class ServiceAppService {
     }
 
     @Transactional
-    public ServiceApp save(ServiceParticipantDto serviceApp) {
+    public ServiceApp save(ServiceParticipantDto serviceApp, String username) {
         log.info("Create Service with name: {}", serviceApp.getName());
         ServiceApp serviceEntiy = new ServiceApp();
         serviceEntiy.setName(serviceApp.getName());
         serviceEntiy.setDescription(serviceApp.getDescription());
         serviceEntiy.setMonthlyPrice(serviceApp.getMonthlyPrice());
         serviceEntiy.setParticipantNumber(serviceApp.getParticipantNumber());
+        serviceEntiy.setUser(userService.findByUsername(username));
         return serviceAppRepository.save(serviceEntiy);
     }
 
 
     @Transactional
-    public ServiceApp edit(Long id, ServiceParticipantDto serviceApp) {
+    public ServiceApp edit(Long id, ServiceParticipantDto serviceApp, String username) {
         log.info("Edit service with id: {}", id);
-        ServiceApp serviceEntiy = serviceAppRepository.getOne(id);
+        ServiceApp serviceEntiy = this.serviceAppRepository.findByIdAndUsername(id, username)
+                .orElseThrow(() -> new ResourceNotFoundException("Service", "id", id));
+
         serviceEntiy.setName(serviceApp.getName());
         serviceEntiy.setDescription(serviceApp.getDescription());
         serviceEntiy.setMonthlyPrice(serviceApp.getMonthlyPrice());
@@ -98,14 +104,17 @@ public class ServiceAppService {
     }
 
     @Transactional
-    public void delete(Long id) {
+    public void delete(Long id, String username) {
         log.info("Delete Service with id: {}", id);
-        this.serviceAppRepository.deleteById(id);
+        ServiceApp serviceEntity = this.serviceAppRepository.findByIdAndUsername(id, username)
+                                 .orElseThrow(() -> new ResourceNotFoundException("Service", "id", id));
+
+        this.serviceAppRepository.delete(serviceEntity);
 
     }
 
 
-    public void copyParticipantsFromPreviousMonth(Long serviceId, int currentMonth, int year) {
+    public void copyParticipantsFromPreviousMonth(Long serviceId, int currentMonth, int year, String username) {
         LocalDate previousDate = Utils.createPreviosuDate(currentMonth, year);
 
         this.serviceAppParticipantService.findParticipantsByPaymentDate(serviceId, previousDate)
@@ -121,8 +130,9 @@ public class ServiceAppService {
                                 .yearPaid(year)
                                 .build())
                 .map(participantDto ->
-                        this.serviceAppParticipantService.addParticipantToService(serviceId, participantDto))
+                        this.serviceAppParticipantService.addParticipantToService(serviceId, participantDto, username))
                 .collect(Collectors.toList());
     }
+
 
 }

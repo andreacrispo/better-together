@@ -33,10 +33,10 @@ public class ServiceAppParticipantService {
     private ParticipantService participantService;
 
     @Transactional
-    public ServiceApp addParticipantToService(Long serviceId, ParticipantDto participantDto) {
+    public ServiceApp addParticipantToService(Long serviceId, ParticipantDto participantDto, String username) {
         log.info("Add participant to service id {}", serviceId);
         // TODO: REFACTOR !
-        ServiceApp service = this.serviceAppRepo.findById(serviceId)
+        ServiceApp service = this.serviceAppRepo.findByIdAndUsername(serviceId, username)
                 .orElseThrow(() -> new ResourceNotFoundException("Service", "id", serviceId));
 
         Participant participantEntity = this.participantService.getOrCreate(participantDto);
@@ -55,10 +55,10 @@ public class ServiceAppParticipantService {
 
 
     @Transactional
-    public ServiceAppParticipant editParticipantFromService(Long serviceId, ParticipantDto participantDto) {
-        log.info("Edit participant from service id {}", serviceId);
-        // TODO: REFACTOR !
-        log.info("Remove participant from service id {}", serviceId);
+    public ServiceAppParticipant editParticipantFromService(Long serviceId, ParticipantDto participantDto, String username) {
+        ServiceApp service = this.serviceAppRepo.findByIdAndUsername(serviceId, username)
+                .orElseThrow(() -> new ResourceNotFoundException("Service", "id", serviceId));
+            
         LocalDate paymentDate = LocalDate.of(participantDto.getYearPaid(), participantDto.getMonthPaid(), 1);
         ServiceAppParticipant relationship = repository.findByServiceAndParticipantAndPaymentDate(serviceId, participantDto.getId(), paymentDate);
 
@@ -78,18 +78,17 @@ public class ServiceAppParticipantService {
 
 
     @Transactional
-    public ServiceApp removeParticipantFromService(Long serviceId, Long participantId, ParticipantDto participantDto) {
+    public ServiceApp removeParticipantFromService(Long serviceId, Long participantId, ParticipantDto participantDto, String username) {
         log.info("Remove participant from service id {}", serviceId);
         LocalDate paymentDate = LocalDate.of(participantDto.getYearPaid(), participantDto.getMonthPaid(), 1);
         ServiceAppParticipant relationship = repository.findByServiceAndParticipantAndPaymentDate(serviceId, participantId, paymentDate);
 
-        ServiceApp service = this.serviceAppRepo.findById(serviceId)
+        ServiceApp service = this.serviceAppRepo.findByIdAndUsername(serviceId, username)
                 .orElseThrow(() -> new ResourceNotFoundException("Service", "id", serviceId));
 
         service.getServiceAppParticipants().remove(relationship);
 
         return serviceAppRepo.save(service);
-
     }
 
 
