@@ -1,0 +1,23 @@
+
+  
+
+
+
+
+<div class="form-signin text-center"> 
+    <form class="form-signin text-center"  (ngSubmit)="signup()" #signupForm="ngForm"> 
+      <!--  <img class="mb-4 text-center" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+        <h1 class="h3 mb-3 font-weight-normal">Signup</h1>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required  
+               [(ngModel)]="username" name="username" #name="ngModel">
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required 
+               [(ngModel)]="password" name="password" #name="ngModel">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    </form>
+    <hr />
+    <span> Already a member? <a class="btn btn-link" [routerLink]="['/login']">Login in</a> </span>
+    </div>

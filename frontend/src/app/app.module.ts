@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,11 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // Ngx- Toastr
 import { ToastrModule } from 'ngx-toastr';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AuthGuard } from './shared/auth/auth.guard';
+import { Interceptor } from './shared/auth/interceptor';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { SignupPageComponent } from './signup-page/signup-page.component';
 
 
 
@@ -35,7 +40,10 @@ import { ToastrModule } from 'ngx-toastr';
     MonthNamePipe,
     ServiceAppModalComponent,
     MonthSelectorComponent,
-    PaidStatusPipe
+    PaidStatusPipe,
+    LoginPageComponent,
+    NavbarComponent,
+    SignupPageComponent
   ],
   entryComponents: [ ParticipantModalComponent, ServiceAppModalComponent],
   imports: [
@@ -55,7 +63,10 @@ import { ToastrModule } from 'ngx-toastr';
       progressAnimation: 'increasing'
     })
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+  ],
   bootstrap: [AppComponent] 
 })
 export class AppModule { }
