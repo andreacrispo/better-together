@@ -1,1 +1,1 @@
-web: java -jar backend/target/better-together.jar
+web: java  -Dserver.port=$PORT $JAVA_OPTS -jar backend/target/better-together.jar
