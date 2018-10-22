@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
-import {faChevronLeft, faChevronRight }  from  "@fortawesome/free-solid-svg-icons";
+import {faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-month-selector',
@@ -11,7 +11,7 @@ export class MonthSelectorComponent implements OnInit {
   @Input() month: number;
   @Input() year: number;
 
-  @Output() onChangeMonth = new EventEmitter();
+  @Output() changeMonth = new EventEmitter();
 
   leftIcon  = faChevronLeft;
   rightIcon = faChevronRight;
@@ -22,21 +22,21 @@ export class MonthSelectorComponent implements OnInit {
   }
 
 
-  minusMonth(){
-    if(this.month - 1 <= 0) {
+  minusMonth() {
+    if (this.month - 1 <= 0) {
       this.month = 12;
       this.year -= 1;
-    }else{
+    } else {
       this.month -= 1;
     }
     this.changeYearMonthEvent({ year: this.year, month: this.month});
   }
 
   plusMonth() {
-    if(this.month + 1 >= 13){
+    if (this.month + 1 >= 13) {
       this.month = 1;
       this.year += 1;
-    }else{
+    } else {
       this.month += 1;
     }
     this.changeYearMonthEvent({ year: this.year, month: this.month});
@@ -44,15 +44,15 @@ export class MonthSelectorComponent implements OnInit {
 
 
   changeYearMonthEvent(e) {
-    this.onChangeMonth.emit(e);
+    this.changeMonth.emit(e);
   }
 
   @HostListener('document:keydown', ['$event'])
   public handleKeyboardEvent(event: KeyboardEvent): void {
     event.stopPropagation();
-    if(event.key == "ArrowLeft"){
+    if (event.key === 'ArrowLeft') {
       this.minusMonth();
-    }else if(event.key == "ArrowRight"){
+    } else if (event.key === 'ArrowRight') {
       this.plusMonth();
     }
   }

@@ -6,6 +6,7 @@
 /out-tsc
 
 # dependencies
+/node
 /node_modules
 
 # IDEs and editors
@@ -37,3 +38,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+/target

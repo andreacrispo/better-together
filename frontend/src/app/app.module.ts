@@ -12,12 +12,12 @@ import { ServiceAppModalComponent } from './service-app/service-app-modal/servic
 import { ParticipantModalComponent } from './particpant/participant-modal/participant-modal.component';
 import { MonthSelectorComponent } from './shared/components/month-selector/month-selector.component';
 import { MonthYearPickerComponent } from './shared/components/month-year-picker/month-year-picker.component';
-import { PaidStatusPipe } from './shared/pipes/paid-status.pipe'
+import { PaidStatusPipe } from './shared/pipes/paid-status.pipe';
 import { MonthNamePipe } from './shared/pipes/month-name.pipe';
 // NGX-BOOTSTRAP
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { ButtonsModule } from 'ngx-bootstrap/buttons'
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 // Font Awesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // Ngx- Toastr
@@ -34,7 +34,7 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
   declarations: [
     AppComponent,
     ServiceAppListComponent,
-    ServiceAppDetailComponent,    
+    ServiceAppDetailComponent,
     ParticipantModalComponent,
     MonthYearPickerComponent,
     MonthNamePipe,
@@ -67,6 +67,6 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
   ],
-  bootstrap: [AppComponent] 
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

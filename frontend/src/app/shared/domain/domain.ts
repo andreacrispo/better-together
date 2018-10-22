@@ -22,8 +22,8 @@ export class ServiceParticipant {
 
 
 export enum ActionType {
-    CREATE   = "CREATE",
-    RETRIVE  = "RETRIVE",
-    UPDATE   = "UPDATE",
-    DELETE   = "DELETE",
+    CREATE   = 'CREATE',
+    RETRIVE  = 'RETRIVE',
+    UPDATE   = 'UPDATE',
+    DELETE   = 'DELETE',
 }

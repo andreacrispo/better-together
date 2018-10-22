@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceAppService } from '../../shared/services/serviceApp.service';
-import { ServiceParticipant, ActionType } from "../../shared/domain/domain";
+import { ServiceParticipant, ActionType } from '../../shared/domain/domain';
 
 import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -18,7 +18,7 @@ export class ServiceAppListComponent implements OnInit {
   addIcon    = faPlus;
   deleteIcon = faTrashAlt;
 
-  serviceAppList: Array<ServiceParticipant>; 
+  serviceAppList: Array<ServiceParticipant>;
 
   bsModalRef: BsModalRef;
 
@@ -28,27 +28,27 @@ export class ServiceAppListComponent implements OnInit {
 
   ngOnInit() {
       this.getServicesList();
-    
+
   }
 
-  getServicesList(){
+  getServicesList() {
     this.serviceAppService.getAll()
         .subscribe( list => this.serviceAppList = list);
-  } 
+  }
 
 
-  addService() {   
-     const initialState = { 
+  addService() {
+     const initialState = {
         serviceApp: new ServiceParticipant(),
         actionType: ActionType.CREATE
     };
-    this.bsModalRef =  this.modalService.show(ServiceAppModalComponent, {initialState})
+    this.bsModalRef =  this.modalService.show(ServiceAppModalComponent, {initialState});
     this.modalService.onHide.subscribe((reason: string) => this.getServicesList());
   }
 
   editService(serviceApp) {
-    console.log("EDIT service:" + serviceApp)
-    const initialState = { 
+    console.log('EDIT service:' + serviceApp);
+    const initialState = {
         serviceApp: serviceApp,
         actionType: ActionType.UPDATE
     };
@@ -56,15 +56,15 @@ export class ServiceAppListComponent implements OnInit {
     this.modalService.onHide.subscribe((reason: string) => this.getServicesList());
   }
 
-  deleteService(serviceId){
-    console.log("DELETE service:" + serviceId)
+  deleteService(serviceId) {
+    console.log('DELETE service:' + serviceId);
     this.serviceAppService.delete(serviceId)
       .subscribe(
         resp => {
-          this.toastr.success("Service removed")
-          this.getServicesList() // Re-make a request or delete object from array localy? 
+          this.toastr.success('Service removed');
+          this.getServicesList(); // Re-make a request or delete object from array localy?
         },
-        err  => this.toastr.error("Error during remove service", "Error")
+        err  => this.toastr.error('Error during remove service', 'Error')
       );
   }
 

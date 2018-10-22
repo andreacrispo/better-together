@@ -24,12 +24,12 @@ export class LoginPageComponent implements OnInit {
 
   login() {
     this.authService.obtainToken(this.username, this.password)
-        .subscribe( 
-          (resp: any) => { 
+        .subscribe(
+          (resp: any) => {
             this.authService.saveToken(resp.token);
             this.redirectAfterLogin();
           },
-          err => this.toastr.warning("Wrong credentials")
+          err => this.toastr.warning('Wrong credentials')
         );
   }
 

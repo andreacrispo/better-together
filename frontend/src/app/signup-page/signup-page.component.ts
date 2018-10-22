@@ -23,12 +23,12 @@ export class SignupPageComponent implements OnInit {
 
   signup() {
     this.authService.signup(this.username, this.password)
-        .subscribe( 
-          (resp: any) => { 
-            this.toastr.success("Account created")
+        .subscribe(
+          (resp: any) => {
+            this.toastr.success('Account created');
             this.redirectAfterSignup();
           },
-          err => this.toastr.error("Errors during signup process")
+          err => this.toastr.error('Errors during signup process')
         );
   }
 

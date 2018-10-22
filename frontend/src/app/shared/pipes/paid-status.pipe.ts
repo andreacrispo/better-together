@@ -2,16 +2,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Participant } from '../domain/domain';
 
 @Pipe({
-  name: 'paidStatus',
-  //pure: false
+  name: 'paidStatus'
 })
 export class PaidStatusPipe implements PipeTransform {
 
   transform(participants: Participant[], filter: boolean): any {
-      if(filter == undefined){
+      if (filter === undefined) {
         return participants;
       }
-      return participants.filter( p => p.hasPaid == filter);
+      return participants.filter( p => p.hasPaid === filter);
   }
 
 }

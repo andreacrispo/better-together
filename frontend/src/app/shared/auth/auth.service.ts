@@ -6,17 +6,17 @@ import { TokenStorage } from './toke.storage';
 export class AuthService {
 
   public BASE_URL =  'http://localhost:8080';
-  public AUTH_API = this.BASE_URL + '/auth';
-  public SIGNUP_API = this.BASE_URL + '/signup';
+  public AUTH_API = this.BASE_URL + '/auth/login';
+  public SIGNUP_API = this.BASE_URL + '/auth/signup';
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorage) {}
 
 
-  obtainToken(username: string, password: string){
-    let credentials = {
+  obtainToken(username: string, password: string) {
+    const credentials = {
       username: username,
       password: password
-    }
+    };
     const opts = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -25,11 +25,11 @@ export class AuthService {
     return this.http.post(this.AUTH_API, credentials, opts);
   }
 
-  signup(username: string, password: string){
-      let credentials = {
+  signup(username: string, password: string) {
+      const credentials = {
         username: username,
         password: password
-      }
+      };
       const opts = {
         headers: new HttpHeaders({
           'Content-Type':  'application/json'
@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    if( this.tokenStorage.getToken() != null) {
+    if ( this.tokenStorage.getToken() != null) {
       return true;
     }
     return false;
