@@ -1,13 +1,33 @@
+
 server:
   port: 8080
 
-logging:
-  level:
-    my.app.bt.bettertogether: debug
+bettertogether:
+  jjwt:
+    secret:     secretsecretsecret
+    expiration:  28800
 
 spring:
   application:
-    name: better-together
+    name: bettertogether
+  profiles:
+    # can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
+    active: #spring.profiles.active#
+
+---
+# Profiles for dev
+
+
+spring:
+  profiles:
+    active: dev
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+  jackson:
+    serialization.indent_output: true
 
   datasource:
     driverClassName: org.h2.Driver
@@ -25,8 +45,28 @@ spring:
       hibernate:
         format_sql: true
 
+server:
+  port: 8080
 
-bettertogether:
-  jjwt:
-    secret:     secretsecretsecret
-    expiration:  28800
+
+---
+# Profile for heroku deployment
+spring:
+  profiles:
+    active: heroku
+
+  datasource:
+    driverClassName: org.postgresql.Driver
+    maxActive: 10
+    maxIdle: 5
+    minIdle: 2
+    initialSize: 5
+    removeAbandoned: true
+
+  jpa:
+    hibernate:
+      ddl-auto:  update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+

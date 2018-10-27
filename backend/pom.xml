@@ -61,6 +61,10 @@
             <version>0.7.0</version>
         </dependency>
 
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>my.app.bt</groupId>
@@ -98,7 +102,7 @@
 						<phase>validate</phase>
 						<goals><goal>copy-resources</goal></goals>
 						<configuration>
-							<outputDirectory>${build.directory}/classes/static/</outputDirectory>
+							<outputDirectory>${project.build.directory}/classes/static/</outputDirectory>
 							<resources>
 								<resource>
 									<directory>../frontend/dist/frontend</directory>

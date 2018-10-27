@@ -41,14 +41,10 @@ public class WebSecurityConfig {
 
                 // Permit cors request
                 .pathMatchers(org.springframework.http.HttpMethod.OPTIONS,"/**").permitAll()
-                // Permint onyl auth endpoint (login and signup)
-             //   .pathMatchers("/auth/**").permitAll()
-                // everything else under authentication
-              //  .anyExchange().authenticated()
-                .pathMatchers("/**").permitAll()
                 .pathMatchers("/api/**").authenticated()
-                .and().build();
-
+                .pathMatchers("/**").permitAll()
+                .and()
+                .build();
     }
 
 
