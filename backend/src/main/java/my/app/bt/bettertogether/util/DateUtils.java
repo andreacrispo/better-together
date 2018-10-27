@@ -1,19 +1,20 @@
-package my.app.bt.bettertogether;
+package my.app.bt.bettertogether.util;
 
 
 import my.app.bt.bettertogether.domain.ParticipantDto;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
 
-public class Utils {
+public class DateUtils {
 
 
-    private Utils() {
+    private DateUtils() {
         throw new IllegalStateException("Utility class");
     }
 
 
-    public static LocalDate createPreviosuDate(int month, int year) {
+    public static LocalDate createPreviousDate(int month, int year) {
         int monthPrev = month;
         int yearPrev = year;
         if (month - 1 <= 0) {
@@ -30,12 +31,6 @@ public class Utils {
         return participant.getMonthPaid() == null || participant.getYearPaid() == null
                 ? LocalDate.now()
                 : LocalDate.of(participant.getYearPaid(), participant.getMonthPaid(), 1);
-    }
-
-    public static boolean paymentDateMatches(LocalDate paymentDate, LocalDate dateParm) {
-        return paymentDate != null && dateParm != null
-                && paymentDate.getMonthValue() == dateParm.getMonthValue()
-                && paymentDate.getYear() == dateParm.getYear();
     }
 
 

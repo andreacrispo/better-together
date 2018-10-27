@@ -1,7 +1,7 @@
 package my.app.bt.bettertogether.service;
 
 import lombok.extern.slf4j.Slf4j;
-import my.app.bt.bettertogether.Utils;
+import my.app.bt.bettertogether.util.DateUtils;
 import my.app.bt.bettertogether.domain.ParticipantDto;
 import my.app.bt.bettertogether.entity.Participant;
 import my.app.bt.bettertogether.entity.ServiceApp;
@@ -46,7 +46,7 @@ public class ServiceAppParticipantService {
         relationship.setParticipant(participantEntity);
         relationship.setHasPaid(participantDto.getHasPaid() != null ? participantDto.getHasPaid() : false);
         relationship.setPricePaid(participantDto.getPricePaid() != null ? participantDto.getPricePaid() : null);
-        relationship.setPaymentDate(Utils.obtainPaymentDate(participantDto));
+        relationship.setPaymentDate(DateUtils.obtainPaymentDate(participantDto));
         service.getServiceAppParticipants().add(relationship);
 
         participantRepo.save(participantEntity);

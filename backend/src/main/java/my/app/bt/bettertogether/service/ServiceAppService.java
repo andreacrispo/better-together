@@ -1,7 +1,7 @@
 package my.app.bt.bettertogether.service;
 
 import lombok.extern.slf4j.Slf4j;
-import my.app.bt.bettertogether.Utils;
+import my.app.bt.bettertogether.util.DateUtils;
 import my.app.bt.bettertogether.domain.ParticipantDto;
 import my.app.bt.bettertogether.domain.ServiceParticipantDto;
 import my.app.bt.bettertogether.entity.ServiceApp;
@@ -115,7 +115,7 @@ public class ServiceAppService {
 
 
     public void copyParticipantsFromPreviousMonth(Long serviceId, int currentMonth, int year, String username) {
-        LocalDate previousDate = Utils.createPreviosuDate(currentMonth, year);
+        LocalDate previousDate = DateUtils.createPreviousDate(currentMonth, year);
 
         this.serviceAppParticipantService.findParticipantsByPaymentDate(serviceId, previousDate)
                 .stream()
