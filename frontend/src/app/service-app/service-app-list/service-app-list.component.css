@@ -1,0 +1,11 @@
+
+
+.card-header {
+  background-color: cadetblue;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+  font-weight: 800;
+  text-shadow: 2px 1px 1px #000000; 
+  padding: 80px;
+  color: #ffffff;
+}

@@ -12,7 +12,9 @@
     
     <div class="col-4"  *ngFor="let serviceApp of serviceAppList" > 
         <div class="card" >
-             <img class="card-img-top" src="http://placehold.jp/99ccff/003366/200x200.png?text={{serviceApp.name}}"  height="250"  alt=""> 
+            <div class="card-header">
+                    <h1 class="text-center"> {{serviceApp.name}}</h1>
+            </div>
             <div class="card-body">
               <h1 class="card-title text-center"> {{serviceApp.name}}</h1>
               <h3 class="card-text"> {{ serviceApp.monthlyPrice | currency:'EUR' }} <span style="font-size:14px">/monthly</span> 
