@@ -39,7 +39,6 @@ export class ServiceAppDetailComponent implements OnInit {
     this.year =  +this.route.snapshot.queryParamMap.get('year')  || today.getFullYear();
     this.month = +this.route.snapshot.queryParamMap.get('month') || today.getMonth() + 1;
     this.route.params.subscribe(params => {
-      console.log(params);
        this.id = params['id'];
        this.getServiceDetail(this.id, this.month, this.year);
     });

@@ -21,7 +21,6 @@ export class ServiceAppModalComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log('Init ' + this.serviceApp);
     this.model = this.serviceApp;
   }
 

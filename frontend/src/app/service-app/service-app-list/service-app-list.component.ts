@@ -47,7 +47,6 @@ export class ServiceAppListComponent implements OnInit {
   }
 
   editService(serviceApp) {
-    console.log('EDIT service:' + serviceApp);
     const initialState = {
         serviceApp: serviceApp,
         actionType: ActionType.UPDATE
@@ -57,7 +56,6 @@ export class ServiceAppListComponent implements OnInit {
   }
 
   deleteService(serviceId) {
-    console.log('DELETE service:' + serviceId);
     this.serviceAppService.delete(serviceId)
       .subscribe(
         resp => {

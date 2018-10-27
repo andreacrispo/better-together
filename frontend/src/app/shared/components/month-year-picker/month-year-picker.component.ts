@@ -40,7 +40,6 @@ export class MonthYearPickerComponent implements OnInit {
   changeYear(event, incr) {
     event.stopPropagation();
     const year = this.isyearSelected ? this.year + 10 * incr : this.year + incr;
-    console.log(year);
     this.year = year;
     this.incr = this.getIncr(year);
   }

@@ -19,7 +19,6 @@ export class Interceptor implements HttpInterceptor {
                headers: request.headers.set(this.TOKEN_HEADER_KEY, `${this.TOKEN_TYPE} ${token}`)
            });
         }
-        console.log('auth  ' + authRequest.headers.get(this.TOKEN_HEADER_KEY) );
         return next.handle(authRequest);
     }
 
