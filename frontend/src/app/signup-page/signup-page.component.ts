@@ -17,8 +17,9 @@ export class SignupPageComponent implements OnInit {
               private toastr: ToastrService,
               private router: Router) { }
 
-  ngOnInit() { }
-
+  ngOnInit() {
+    document.body.style.backgroundColor = "cadetblue";
+  }
 
 
   signup() {
@@ -34,6 +35,11 @@ export class SignupPageComponent implements OnInit {
 
   redirectAfterSignup() {
     this.router.navigate(['/login']);
+  }
+
+
+  ngOnDestroy() {
+    document.body.style.backgroundColor = "";
   }
 
 }

@@ -18,9 +18,8 @@ export class LoginPageComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    document.body.style.backgroundColor = "cadetblue";
   }
-
-
 
   login() {
     this.authService.obtainToken(this.username, this.password)
@@ -35,6 +34,11 @@ export class LoginPageComponent implements OnInit {
 
   redirectAfterLogin() {
     this.router.navigate(['/services']);
+  }
+
+
+  ngOnDestroy() {
+    document.body.style.backgroundColor = "";
   }
 
 

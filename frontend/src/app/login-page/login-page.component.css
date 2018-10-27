@@ -1,29 +1,48 @@
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+
+.login-page .brand {
+	height: 75px;
+	overflow: hidden;
+	margin: 0 auto;
+	margin: 30px auto;
+	position: relative;
+  z-index: 1;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+  font-size: 54px;
+  font-weight: 800;
+  text-shadow: 2px 1px 1px #d7d7d7; 
 }
-.form-signin .checkbox {
-  font-weight: 400;
+
+.login-page .brand img {
+	width: 100%;
 }
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
+
+.login-page .card-wrapper {
+	width: 400px;
 }
-.form-signin .form-control:focus {
-  z-index: 2;
+
+.login-page .card {
+	border-color: transparent;
+	box-shadow: 0 4px 8px rgba(0,0,0,.05);
 }
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+
+.login-page .card.fat {
+	padding: 10px;
 }
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+
+.login-page .card .card-title {
+	margin-bottom: 30px;
 }
+
+.login-page .form-control {
+	border-width: 2.3px;
+}
+
+.login-page .form-group label {
+	width: 100%;
+}
+
+.login-page .btn.btn-block {
+	padding: 12px 10px;
+}
+

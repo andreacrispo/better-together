@@ -1,19 +1,43 @@
 
+	<section class="h-100 login-page">
+		<div class="container h-100">
+			<div class="row justify-content-md-center h-100">
+				<div class="card-wrapper">
+      
+					<div class="brand">
+						Better Together
+          </div>
+        
+					<div class="card fat">
+						<div class="card-body">
+							<h2 class="card-title text-center">Login</h2>
+							<form  class="login-validation"  (ngSubmit)="login()" #loginForm="ngForm"> 
+								<div class="form-group">
+									<label for="email">Username</label>
+                  <input type="text" id="inputUsername" class="form-control" placeholder="Username" required  
+                        [(ngModel)]="username" name="username" #name="ngModel">
+								</div>
 
-<div class="form-signin text-center"> 
-<form class="form-signin text-center" (ngSubmit)="login()" #loginForm="ngForm"> 
-  <!--  <img class="mb-4 text-center" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
-    <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-    <label for="inputUsername" class="sr-only">Username</label>
-    <input type="text" id="inputUsername" class="form-control" placeholder="Username" required  
-           [(ngModel)]="username" name="username" #name="ngModel">
+								<div class="form-group">
+									<label for="password">Password</label>
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required 
+                         [(ngModel)]="password" name="password" #name="ngModel">
+								</div>
 
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required 
-           [(ngModel)]="password" name="password" #name="ngModel">
-    
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form>
-<hr />
-<span> New member? <a class="btn btn-link" [routerLink]="['/signup']">Sign up</a> </span>
-</div>
+                <hr />
+
+								<div class="form-group m-0">
+									<button type="submit" class="btn btn-primary btn-block">
+										Login
+									</button>
+								</div>
+								<div class="mt-4 text-center">
+                    <span> 	Don't have an account? <a class="btn btn-link" [routerLink]="['/signup']">Sign up</a> </span>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
