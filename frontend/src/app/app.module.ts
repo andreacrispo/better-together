@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ServiceAppListComponent } from './service-app/service-app-list/service-app-list.component';
 import { ServiceAppDetailComponent } from './service-app/service-app-detail/service-app-detail.component';
 import { ServiceAppModalComponent } from './service-app/service-app-modal/service-app-modal.component';
-import { ParticipantModalComponent } from './particpant/participant-modal/participant-modal.component';
+import { ParticipantModalComponent } from './participant/participant-modal/participant-modal.component';
 import { MonthSelectorComponent } from './shared/components/month-selector/month-selector.component';
 import { MonthYearPickerComponent } from './shared/components/month-year-picker/month-year-picker.component';
 import { PaidStatusPipe } from './shared/pipes/paid-status.pipe';

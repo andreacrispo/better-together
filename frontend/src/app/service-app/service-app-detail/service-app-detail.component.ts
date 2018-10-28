@@ -4,7 +4,7 @@ import { Participant, ServiceParticipant } from '../../shared/domain/domain';
 import { ServiceAppService } from '../../shared/services/serviceApp.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { ParticipantModalComponent } from '../../particpant/participant-modal/participant-modal.component';
+import { ParticipantModalComponent } from '../../participant/participant-modal/participant-modal.component';
 import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 
@@ -45,6 +45,7 @@ export class ServiceAppDetailComponent implements OnInit {
   }
 
   private getServiceDetail(serviceId, month?, year?) {
+    console.log("Month " + month + " year  " + year);
     this.serviceAppService.get(serviceId, month, year)
         .subscribe(
           service => {

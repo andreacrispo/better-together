@@ -9,7 +9,7 @@
  
 
 <h2 class="text-center display-5">  
-    <app-month-selector [month]="month" [year]="year" (onChangeMonth)="changeYearMonthEvent($event)" ></app-month-selector>
+    <app-month-selector [month]="month" [year]="year" (changeMonth)="changeYearMonthEvent($event)" ></app-month-selector>
     <app-month-year-picker (yearMonthSelected)="changeYearMonthEvent($event)" ></app-month-year-picker>
 </h2>
 <br />
