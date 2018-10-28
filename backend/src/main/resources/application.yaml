@@ -4,23 +4,18 @@ server:
 
 bettertogether:
   jjwt:
-    secret:     secretsecretsecret
-    expiration:  28800
+    secret: secretsecretsecret
+    expiration: 28800
 
 spring:
   application:
     name: bettertogether
-  profiles:
-    # can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
-    active: #spring.profiles.active#
 
 ---
 # Profiles for dev
 
-
 spring:
-  profiles:
-    active: dev
+  profiles: dev
   devtools:
     restart:
       enabled: true
@@ -45,15 +40,11 @@ spring:
       hibernate:
         format_sql: true
 
-server:
-  port: 8080
-
 
 ---
 # Profile for heroku deployment
 spring:
-  profiles:
-    active: heroku
+  profiles: heroku
 
   datasource:
     driverClassName: org.postgresql.Driver
@@ -62,11 +53,15 @@ spring:
     minIdle: 2
     initialSize: 5
     removeAbandoned: true
+    url: ${DATABASE_URL}
 
   jpa:
     hibernate:
       ddl-auto:  update
     properties:
       hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
 

@@ -1,4 +1,4 @@
-package my.app.bt.bettertogether.config;
+package my.app.bt.bettertogether.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -31,7 +31,7 @@ public class JWTUtil implements Serializable {
         return getAllClaimsFromToken(token).getSubject();
     }
 
-    public Date getExpirationDateFromToken(String token) {
+    private Date getExpirationDateFromToken(String token) {
         return getAllClaimsFromToken(token).getExpiration();
     }
 

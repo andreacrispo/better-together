@@ -35,7 +35,6 @@ public class ServiceAppParticipantService {
     @Transactional
     public ServiceApp addParticipantToService(Long serviceId, ParticipantDto participantDto, String username) {
         log.info("Add participant to service id {}", serviceId);
-        // TODO: REFACTOR !
         ServiceApp service = this.serviceAppRepo.findByIdAndUsername(serviceId, username)
                 .orElseThrow(() -> new ResourceNotFoundException("Service", "id", serviceId));
 
@@ -45,7 +44,7 @@ public class ServiceAppParticipantService {
         relationship.setService(service);
         relationship.setParticipant(participantEntity);
         relationship.setHasPaid(participantDto.getHasPaid() != null ? participantDto.getHasPaid() : false);
-        relationship.setPricePaid(participantDto.getPricePaid() != null ? participantDto.getPricePaid() : null);
+        relationship.setPricePaid(participantDto.getPricePaid());
         relationship.setPaymentDate(DateUtils.obtainPaymentDate(participantDto));
         service.getServiceAppParticipants().add(relationship);
 

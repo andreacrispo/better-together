@@ -2,7 +2,6 @@ package my.app.bt.bettertogether.util;
 
 
 import my.app.bt.bettertogether.domain.ParticipantDto;
-import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
 

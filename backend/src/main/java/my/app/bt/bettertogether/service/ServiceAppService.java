@@ -20,17 +20,17 @@ import java.util.stream.Collectors;
 @Service
 public class ServiceAppService {
 
-    @Autowired
     private ServiceAppRepository serviceAppRepository;
-
-    @Autowired
-    private ParticipantService participantService;
-
-    @Autowired
     private ServiceAppParticipantService serviceAppParticipantService;
+    private UserService userService;
 
     @Autowired
-    private UserService userService;
+    public ServiceAppService(ServiceAppRepository serviceAppRepository,
+                             ServiceAppParticipantService serviceAppParticipantService, UserService userService) {
+        this.serviceAppRepository = serviceAppRepository;
+        this.serviceAppParticipantService = serviceAppParticipantService;
+        this.userService = userService;
+    }
 
     public List<ServiceParticipantDto> findAll(String username) {
         return this.serviceAppRepository.findAllByUsername(username)
@@ -80,27 +80,27 @@ public class ServiceAppService {
     @Transactional
     public ServiceApp save(ServiceParticipantDto serviceApp, String username) {
         log.info("Create Service with name: {}", serviceApp.getName());
-        ServiceApp serviceEntiy = new ServiceApp();
-        serviceEntiy.setName(serviceApp.getName());
-        serviceEntiy.setDescription(serviceApp.getDescription());
-        serviceEntiy.setMonthlyPrice(serviceApp.getMonthlyPrice());
-        serviceEntiy.setParticipantNumber(serviceApp.getParticipantNumber());
-        serviceEntiy.setUser(userService.findByUsername(username));
-        return serviceAppRepository.save(serviceEntiy);
+        ServiceApp serviceEntity = new ServiceApp();
+        serviceEntity.setName(serviceApp.getName());
+        serviceEntity.setDescription(serviceApp.getDescription());
+        serviceEntity.setMonthlyPrice(serviceApp.getMonthlyPrice());
+        serviceEntity.setParticipantNumber(serviceApp.getParticipantNumber());
+        serviceEntity.setUser(userService.findByUsername(username));
+        return serviceAppRepository.save(serviceEntity);
     }
 
 
     @Transactional
     public ServiceApp edit(Long id, ServiceParticipantDto serviceApp, String username) {
         log.info("Edit service with id: {}", id);
-        ServiceApp serviceEntiy = this.serviceAppRepository.findByIdAndUsername(id, username)
+        ServiceApp serviceEntity = this.serviceAppRepository.findByIdAndUsername(id, username)
                 .orElseThrow(() -> new ResourceNotFoundException("Service", "id", id));
 
-        serviceEntiy.setName(serviceApp.getName());
-        serviceEntiy.setDescription(serviceApp.getDescription());
-        serviceEntiy.setMonthlyPrice(serviceApp.getMonthlyPrice());
-        serviceEntiy.setParticipantNumber(serviceApp.getParticipantNumber());
-        return serviceAppRepository.save(serviceEntiy);
+        serviceEntity.setName(serviceApp.getName());
+        serviceEntity.setDescription(serviceApp.getDescription());
+        serviceEntity.setMonthlyPrice(serviceApp.getMonthlyPrice());
+        serviceEntity.setParticipantNumber(serviceApp.getParticipantNumber());
+        return serviceAppRepository.save(serviceEntity);
     }
 
     @Transactional

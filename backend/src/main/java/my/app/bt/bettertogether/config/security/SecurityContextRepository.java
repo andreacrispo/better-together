@@ -1,4 +1,4 @@
-package my.app.bt.bettertogether.config;
+package my.app.bt.bettertogether.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

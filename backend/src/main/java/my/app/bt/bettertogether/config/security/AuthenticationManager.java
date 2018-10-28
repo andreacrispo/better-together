@@ -1,6 +1,7 @@
-package my.app.bt.bettertogether.config;
+package my.app.bt.bettertogether.config.security;
 
 import io.jsonwebtoken.Claims;
+import my.app.bt.bettertogether.util.JWTUtil;
 import my.app.bt.bettertogether.domain.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;

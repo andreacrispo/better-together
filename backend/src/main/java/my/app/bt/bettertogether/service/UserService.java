@@ -12,27 +12,30 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 @Service
 @Slf4j
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    UserRepository userRepo;
+    private UserRepository userRepo;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    public UserService(UserRepository userRepo, PasswordEncoder passwordEncoder) {
+        this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
-    public User loadUserByUsername(String username) throws UsernameNotFoundException {
+    public User loadUserByUsername(String username)  {
 
         return this.userRepo.findByUsername(username)
                             .map( entity -> {
                                 User user = new User();
                                 user.setUsername(entity.getUsername());
                                 user.setPassword(entity.getPassword());
-                                user.setRoles( Arrays.asList(Role.ROLE_ADMIN)); // TMP
+                                user.setRoles(Collections.singletonList(Role.ROLE_ADMIN)); // TMP
                                 user.setEnabled(entity.getEnabled());
                                 return user;
                             })

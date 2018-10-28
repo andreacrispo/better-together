@@ -1,7 +1,7 @@
 package my.app.bt.bettertogether.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import my.app.bt.bettertogether.config.JWTUtil;
+import my.app.bt.bettertogether.util.JWTUtil;
 import my.app.bt.bettertogether.domain.AuthRequest;
 import my.app.bt.bettertogether.domain.AuthResponse;
 import my.app.bt.bettertogether.domain.User;
@@ -21,14 +21,16 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/auth")
 public class AuthController {
 
-    @Autowired
     private JWTUtil jwtUtil;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
+    private UserService userService;
 
     @Autowired
-    private UserService userService;
+    public AuthController(JWTUtil jwtUtil, PasswordEncoder passwordEncoder, UserService userService) {
+        this.jwtUtil = jwtUtil;
+        this.passwordEncoder = passwordEncoder;
+        this.userService = userService;
+    }
 
     @PostMapping(value = "/login")
     public Mono<ResponseEntity<AuthResponse>> auth(@RequestBody AuthRequest request) {
@@ -47,7 +49,7 @@ public class AuthController {
     @PostMapping(value = "/signup")
     public Mono<ResponseEntity> auth(@RequestBody User user) {
         return Mono.just(userService.signUp(user))
-                  .map( userEntity -> ResponseEntity.ok(userEntity));
+                  .map(ResponseEntity::ok);
     }
 
 }

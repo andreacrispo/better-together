@@ -5,13 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
 
 @Data
 @EqualsAndHashCode(exclude = {"participant", "service"})

@@ -22,10 +22,14 @@ import java.time.LocalDate;
 @RequestMapping("/api/services")
 public class ServiceAppController {
 
-    @Autowired
-    private ServiceAppService serviceAppService;
-    @Autowired
     private ServiceAppParticipantService serviceParticipantService;
+    private ServiceAppService serviceAppService;
+
+    @Autowired
+    public ServiceAppController(ServiceAppService serviceAppService, ServiceAppParticipantService serviceParticipantService) {
+        this.serviceAppService = serviceAppService;
+        this.serviceParticipantService = serviceParticipantService;
+    }
 
     @GetMapping(value = {"", "/"})
     public Flux<ServiceParticipantDto> findAllByUser(@AuthenticationPrincipal Principal principal) {
