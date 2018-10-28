@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../shared/auth/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, OnDestroy {
 
   username: string;
   password: string;
@@ -18,7 +18,7 @@ export class LoginPageComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    document.body.style.backgroundColor = "cadetblue";
+    document.body.style.backgroundColor = 'cadetblue';
   }
 
   login() {
@@ -38,7 +38,7 @@ export class LoginPageComponent implements OnInit {
 
 
   ngOnDestroy() {
-    document.body.style.backgroundColor = "";
+    document.body.style.backgroundColor = '';
   }
 
 

@@ -45,7 +45,6 @@ export class ServiceAppDetailComponent implements OnInit {
   }
 
   private getServiceDetail(serviceId, month?, year?) {
-    console.log("Month " + month + " year  " + year);
     this.serviceAppService.get(serviceId, month, year)
         .subscribe(
           service => {
