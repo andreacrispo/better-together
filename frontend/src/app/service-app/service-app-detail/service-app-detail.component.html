@@ -35,8 +35,8 @@
 
 <div *ngIf="serviceApp?.participants.length > 0">
   
-  <table class="table">
-      <thead>
+  <table class="table table-hover">
+      <thead class="thead-light">
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Has Paid?</th>
@@ -45,8 +45,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let participant of serviceApp.participants | paidStatus:paidFilter" >
-    
+        <tr *ngFor="let participant of serviceApp.participants | paidStatus:paidFilter" > 
           <td>{{participant.name}}</td>
           <td> 
                <label (click)="changePaidStatus(participant)"  [className]="participant.hasPaid ? 'btn badge badge-success' : 'btn badge badge-danger'" > {{ participant.hasPaid ? "Payed" : "NOT Payed" }}</label> 
@@ -57,14 +56,33 @@
                <button (click)="editParticipant(participant)" type="button" class="btn btn-secondary"> <fa-icon [icon]="editIcon"></fa-icon> </button>
                <button (click)="removeParticipant(participant)" type="button" class="btn btn-secondary"> <fa-icon [icon]="deleteIcon"></fa-icon> </button>
             </div>
-          </td>
-          
+          </td>  
         </tr>
       </tbody>
     </table>
-    <hr />
-    Partecipanti tot = {{ participantsPaid  |  currency:'EUR'   }} <br />
-    Rimangono da pagare = {{ serviceApp.monthlyPrice - participantsPaid  |  currency:'EUR'  }}  
+  
+ <hr />
+
+ <div class="card mx-auto shadow-lg p-3 mb-5 bg-white rounded" style="width: 350px;">
+    <div class="card-body">
+     <table class="table table-sm table-borderless">
+        <tbody>
+          <tr>
+            <th class="text-left">Monthly price</th>
+            <td>{{ serviceApp.monthlyPrice | currency:'EUR'}}</td>
+          </tr>
+          <tr>
+            <th class="text-left"> Paid by the participants:</th>
+            <td>{{ participantsPaid | currency:'EUR'}}</td>
+          </tr>
+          <tr>
+            <th class="text-left"> <hr /> Remain to be paid:</th>
+            <td> <hr />  {{ serviceApp.monthlyPrice - participantsPaid | currency:'EUR'}}</td>
+          </tr>
+        </tbody>
+      </table>  
+    </div>
+  </div>
 </div>
 
 <div *ngIf="serviceApp?.participants.length == 0">
@@ -77,3 +95,4 @@
 </div>
 
 
+<br /><br />

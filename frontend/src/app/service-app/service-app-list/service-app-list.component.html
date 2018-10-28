@@ -11,7 +11,7 @@
 <div class="row card-group">
     
     <div class="col-4"  *ngFor="let serviceApp of serviceAppList" > 
-        <div class="card" >
+        <div class="card shadow" >
             <div class="card-header">
                     <h1 class="text-center"> {{serviceApp.name}}</h1>
             </div>
@@ -24,10 +24,9 @@
                         <button (click)="deleteService(serviceApp.serviceId)" type="button" class="btn btn-secondary"> <fa-icon [icon]="deleteIcon"></fa-icon> </button>
                    </div>
                 </h3>
-     
-            </div>
-            <div class="card-footer">           
-                 <a [routerLink]="['/services', serviceApp.serviceId]" class="btn btn-primary btn-sm btn-block">Show</a>
+                <hr />
+                <a [routerLink]="['/services', serviceApp.serviceId]" class="btn btn-primary  btn-block">Show</a>
+
             </div>
         </div>
 
