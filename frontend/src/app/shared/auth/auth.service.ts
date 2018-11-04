@@ -5,9 +5,8 @@ import { TokenStorage } from './toke.storage';
 @Injectable({ providedIn: 'root'})
 export class AuthService {
 
-  public BASE_URL =  'http://localhost:8080';
-  public AUTH_API = this.BASE_URL + '/auth/login';
-  public SIGNUP_API = this.BASE_URL + '/auth/signup';
+  public AUTH_API   = '/auth/login';
+  public SIGNUP_API = '/auth/signup';
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorage) {}
 

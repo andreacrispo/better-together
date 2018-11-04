@@ -6,8 +6,7 @@ import { ServiceParticipant, Participant } from '../domain/domain';
 @Injectable({ providedIn: 'root' })
 export class ServiceAppService {
 
-    public BASE_URL =  'http://localhost:8080';
-    public SERVICE_API = this.BASE_URL + '/api/services';
+    public SERVICE_API = '/api/services';
 
     constructor(private http: HttpClient) {
     }
