@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TokenStorage } from './toke.storage';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root'})
 export class AuthService {
 
-  public AUTH_API   = '/auth/login';
-  public SIGNUP_API = '/auth/signup';
+  public AUTH_API   =  environment.API_BASE_URL +  '/auth/login';
+  public SIGNUP_API =  environment.API_BASE_URL +  '/auth/signup';
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorage) {}
 
