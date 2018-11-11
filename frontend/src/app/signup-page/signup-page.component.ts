@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SignupPageComponent implements OnInit, OnDestroy {
 
+  email: string;
   username: string;
   password: string;
 
