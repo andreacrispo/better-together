@@ -6,6 +6,18 @@
   text-align: center;
   font-weight: 800;
   text-shadow: 2px 1px 1px #000000; 
-  padding: 80px;
+  padding: 80px;  
   color: #ffffff;
+}
+
+@media (max-width: 576px) { 
+  .card {
+    word-break: normal;
+  }
+  .col-4 {
+    max-width: 100%;
+  }
+  .card-header {
+    padding: 40px;
+  }
 }

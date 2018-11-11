@@ -2,11 +2,11 @@
 
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
     <a class="navbar-brand" [routerLink]="['/services']" >Better Together</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button *ngIf="isLoggedIn()" class="navbar-toggler" type="button"  (click)="toggleNavbar()">
       <span class="navbar-toggler-icon"></span>
     </button>
   
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">  
       <ul class="navbar-nav mr-auto" *ngIf="isLoggedIn()">
         <li class="nav-item active" >
           <a  class="nav-link" [routerLink]="['/services']"  >Services</a>
