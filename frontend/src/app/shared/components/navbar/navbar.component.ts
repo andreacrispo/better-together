@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  navbarOpen: boolean = false;
-  
+  navbarOpen = false;
+
   constructor(private authService: AuthService,
               private router: Router) { }
 
