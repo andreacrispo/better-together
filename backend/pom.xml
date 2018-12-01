@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>better-together</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Better Together App</description>
 
 	<parent>
 		<groupId>my.app.bt</groupId>
@@ -21,6 +21,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<jjwt.version>0.9.1</jjwt.version>
 	</properties>
 
 	<dependencies>
@@ -57,7 +58,7 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.7.0</version>
+            <version>${jjwt.version}</version>
         </dependency>
 
 		<dependency>
