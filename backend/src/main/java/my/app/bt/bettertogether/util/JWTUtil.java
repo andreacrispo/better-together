@@ -4,7 +4,9 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import my.app.bt.bettertogether.domain.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,11 +18,19 @@ public class JWTUtil implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-   // @Value("${bettertogether.jjwt.secret}")
-    private final String secret = "testsecret";
 
- //   @Value("${bettertogether.jjwt.expiration}")
-    private final String expirationTime = "8888888";
+    @Value("${bettertogether.jwt.secret}")
+    private String secret;
+
+    @Value("${bettertogether.jwt.expiration}")
+    private String expirationTime;
+
+    public JWTUtil(@Value("${bettertogether.jwt.secret}") String secret, @Value("${bettertogether.jwt.expiration}") String expiration) {
+        Assert.notNull(secret, "Secret cannot be null");
+        Assert.notNull(expiration, "Expiration cannot be null");
+        this.secret = secret;
+        this.expirationTime = expiration;
+    }
 
 
     public Claims getAllClaimsFromToken(String token) {

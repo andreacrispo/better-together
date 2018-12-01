@@ -3,9 +3,9 @@ server:
   port: 8080
 
 bettertogether:
-  jjwt:
-    secret: secretsecretsecret
-    expiration: 28800
+  jwt:
+    secret: D072B91E266D766203E267FA30634A12C52CDC85BC667A5171B000B92E2DCC50
+    expiration: 8888888
 
 spring:
   application:

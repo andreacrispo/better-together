@@ -12,7 +12,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"serviceAppParticipants"})
+@EqualsAndHashCode(exclude = {"serviceAppParticipants", "user"})
 @Entity
 @Table(name = "service")
 public class ServiceApp {
