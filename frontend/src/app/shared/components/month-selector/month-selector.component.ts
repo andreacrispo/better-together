@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
-import {faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-month-selector',
@@ -13,8 +12,6 @@ export class MonthSelectorComponent implements OnInit {
 
   @Output() changeMonth = new EventEmitter();
 
-  leftIcon  = faChevronLeft;
-  rightIcon = faChevronRight;
 
   constructor() { }
 

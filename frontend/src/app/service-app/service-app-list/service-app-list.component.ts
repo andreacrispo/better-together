@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceAppService } from '../../shared/services/serviceApp.service';
 import { ServiceParticipant, ActionType } from '../../shared/domain/domain';
 
-import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ServiceAppModalComponent } from '../service-app-modal/service-app-modal.component';
 import { ToastrService } from 'ngx-toastr';
@@ -13,10 +12,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./service-app-list.component.css']
 })
 export class ServiceAppListComponent implements OnInit {
-
-  editIcon   = faEdit;
-  addIcon    = faPlus;
-  deleteIcon = faTrashAlt;
 
   serviceAppList: Array<ServiceParticipant>;
 

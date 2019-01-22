@@ -1,8 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
-import { faCalendarAlt, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-
 @Component({
   selector: 'app-month-year-picker',
   templateUrl: './month-year-picker.component.html',
@@ -10,7 +8,6 @@ import { faCalendarAlt, faChevronLeft, faChevronRight } from '@fortawesome/free-
 })
 export class MonthYearPickerComponent implements OnInit {
 
-  calendarIcon = faCalendarAlt; leftIcon = faChevronLeft; rightIcon = faChevronRight;
 
   year;
   months: string[];

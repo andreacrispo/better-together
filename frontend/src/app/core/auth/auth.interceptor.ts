@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TokenStorage } from './toke.storage';
+import { TokenStorage } from './token.storage';
 
 @Injectable({ providedIn: 'root'})
-export class Interceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
 
     private TOKEN_HEADER_KEY = 'Authorization';
     private TOKEN_TYPE       = 'Bearer';

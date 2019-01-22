@@ -5,7 +5,7 @@ import { ServiceAppService } from '../../shared/services/serviceApp.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ParticipantModalComponent } from '../../participant/participant-modal/participant-modal.component';
-import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -15,9 +15,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./service-app-detail.component.css']
 })
 export class ServiceAppDetailComponent implements OnInit {
-  deleteIcon = faTrashAlt;
-  editIcon   = faEdit;
-  addIcon    = faPlus;
 
   id: any;
   month: number ;

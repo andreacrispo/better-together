@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TokenStorage } from './toke.storage';
+import { TokenStorage } from './token.storage';
 import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root'})

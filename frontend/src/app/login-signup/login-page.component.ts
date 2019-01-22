@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../shared/auth/auth.service';
+
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../core/auth/auth.service';
 
 @Component({
   selector: 'app-login-page',
